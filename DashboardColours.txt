@@ -1,0 +1,10 @@
+main sidebar colour: #2C323E
+sidebar button hover: #242B35
+icon colour: #ffffff
+icon hover colour: #316790
+Nice blue: #0082C3
+Submit- greeen: #41B412
+
+
+TABLE TEXT: #BDBCC1
+tABLE FIRST ROW: :	#EBEBEB

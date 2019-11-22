@@ -1,0 +1,93 @@
+================* MySQL Queries *=========================
+
+
+========== Format ==============
+
+SELECT column_name(s) FROM table1. INNER JOIN table2. ON table1.column_name = table2.column_name;
+
+
+================================
+
+
+#############################################################
+
+===== Geting Domains and how many times they are search in a week: limit 10 ============== 
+
+
+SELECT DomainName, count(DomainName) as 'Times Visited' FROM Domains INNER JOIN Business ON Domains.Business_Id = Business.Id WHERE Business_Id = 1 AND YEARWEEK(DateVisited, 1) = YEARWEEK(CURDATE(), 1) group by DomainName
+order by count(DomainName) desc LIMIT 10
+
+
+
+#############################################################
+
+#############################################################
+
+===== Getting Mac Addresses and the number of times they returned within a week============== 
+========= A seperate count query can then be used to get the count which will give us the number returned within a week =====
+
+SELECT DomainName, count(DomainName) as 'Times Visited' FROM Domains INNER JOIN Business ON Domains.Business_Id = Business.Id WHERE Business_Id = 1 AND YEARWEEK(DateVisited, 1) = YEARWEEK(CURDATE(), 1) group by DomainName
+order by count(DomainName) desc LIMIT 10
+
+
+
+select count(*) As 'Customers Returned' from (SELECT MAC_Address, count(MAC_Address) as 'Number of Visits' FROM MacAddress WHERE Business_Id = 1 AND YEARWEEK(DateConnected, 1) = YEARWEEK(CURDATE(), 1) group by MAC_Address
+order by count(MAC_Address) desc ) as x;
+
+#############################################################
+#############################################################
+
+===== Getting number satisfied, number unsatisfied and percentage % satisfied============== 
+
+select sum(Satisfied = 1) as Yes, sum(Satisfied = 0) as No, ROUND(avg(Satisfied = 0) * 100) as Percentage
+from Feedback
+
+===== Getting percentage % satisfied============== 
+
+select ROUND(avg(Satisfied = 0) * 100) as Percentage
+from Feedback
+
+
+
+#############################################################
+#############################################################
+
+===== Getting Count of each topics ============== 
+
+
+SELECT COUNT(News.Feedback_Id) as 'News', COUNT(Other.Feedback_Id) as 'Other',
+COUNT(SocialMedia.Feedback_Id) as 'Social Media', COUNT(Sport.Feedback_Id) as 'Sport',
+COUNT(StreamMedia.Feedback_Id) as 'Stream Media'
+FROM Feedback 
+LEFT JOIN News ON Feedback.Id = News.Feedback_Id 
+LEFT JOIN Other ON Feedback.Id = Other.Feedback_Id 
+LEFT JOIN SocialMedia ON Feedback.Id = SocialMedia.Feedback_Id
+LEFT JOIN Sport ON Feedback.Id = Sport.Feedback_Id 
+LEFT JOIN StreamMedia ON Feedback.Id = StreamMedia.Feedback_Id
+
+
+NumCompleted / NumTotal * 100
+
+SELECT (COUNT(News.Feedback_Id) + COUNT(Other.Feedback_Id) + COUNT(SocialMedia.Feedback_Id)+ COUNT(Sport.Feedback_Id) + COUNT(StreamMedia.Feedback_Id)) as totala
+FROM Feedback 
+LEFT JOIN News ON Feedback.Id = News.Feedback_Id 
+LEFT JOIN Other ON Feedback.Id = Other.Feedback_Id 
+LEFT JOIN SocialMedia ON Feedback.Id = SocialMedia.Feedback_Id
+LEFT JOIN Sport ON Feedback.Id = Sport.Feedback_Id 
+LEFT JOIN StreamMedia ON Feedback.Id = StreamMedia.Feedback_Id
+
+
+SELECT (COUNT(News.Feedback_Id) + COUNT(Other.Feedback_Id) + COUNT(SocialMedia.Feedback_Id)+ COUNT(Sport.Feedback_Id) + COUNT(StreamMedia.Feedback_Id)) as 'Total Count',
+
+ COUNT(News.Feedback_Id) as 'News' , COUNT(Other.Feedback_Id) as 'Other',
+COUNT(SocialMedia.Feedback_Id) as 'Social Media', COUNT(Sport.Feedback_Id) as 'Sport',
+COUNT(StreamMedia.Feedback_Id) as 'Stream Media'
+FROM Feedback 
+LEFT JOIN News ON Feedback.Id = News.Feedback_Id 
+LEFT JOIN Other ON Feedback.Id = Other.Feedback_Id 
+LEFT JOIN SocialMedia ON Feedback.Id = SocialMedia.Feedback_Id
+LEFT JOIN Sport ON Feedback.Id = Sport.Feedback_Id 
+LEFT JOIN StreamMedia ON Feedback.Id = StreamMedia.Feedback_Id
+
+
+

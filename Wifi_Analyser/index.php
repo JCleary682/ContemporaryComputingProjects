@@ -1,8 +1,22 @@
 <?php
 include ("Secure/Functions.php");
-//include ("Secure/connect.php");
+include ("Secure/connect.php");
 ?>
+<?php
+   
+  $TopicPercetages = GetPercentageFromResults($conn);
 
+
+$dataPoints = array( 
+	array("label"=>"News", "y"=>$TopicPercetages[0]),
+	array("label"=>"Other", "y"=>$TopicPercetages[1]),
+	array("label"=>"Social Media", "y"=>$TopicPercetages[2]),
+	array("label"=>"Sport", "y"=>$TopicPercetages[3]),
+	array("label"=>"Stream Media", "y"=>$TopicPercetages[4])
+	
+)
+ 
+?>
 
 <!DOCTYPE html>
 <!--
@@ -15,9 +29,32 @@ and open the template in the editor.
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 
         <title>Dashboard</title>
+        <script>
+window.onload = function() {
+ 
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Percentage of Popular Topics"
+	},
+	subtitles: [{
+		text: "November 2019"
+	}],
+	data: [{
+		type: "pie",
+		yValueFormatString: "#,##0.00\"%\"",
+		indexLabel: "{label} ({y})",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
     </head>
     <body>
         <div class="OverallContainer">
@@ -68,13 +105,14 @@ and open the template in the editor.
             <div class="MainContainer">
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
-                    <div class="DashboardSmallInfoContainer">
+                    <div class="DashboardLeftInfoContainer">
                     <div class="DashboardNumRetBox">
-                        <div class="DashboardNumRetText"><p>Number of Returning Customers</p></div>
+                        <div class="DashboardNumRetText"><p>Number of Returning Customers This Week</p></div>
                         <div class="DashboardNumRetCircle"><?php echo GetNumberofReturningCustomers($conn) ?></div>
                     </div>
                      <div class="DashboardNumRetBox">
-                        <div class="DashboardNumRetText"><p>Number of Returning Customers</p></div>
+                        
+                        <div class="DashboardNumRetText"><p>Percentage of Satisfied Customers This Week</p></div>
                           
 
                       <div class="single-chart">
@@ -84,20 +122,20 @@ and open the template in the editor.
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <path id="EmployeePercentage" runat="Server" class="circle"
-        stroke-dasharray="0, 100"
+      <path id="CustomerPercentage" runat="Server" class="circle <?php if(GetPercentageofSatisfiedCustomers($conn) >= 50){ echo 'PercentageAbove50';} else { echo 'PercentageBelow50';} ?>"
+        stroke-dasharray="<?php echo GetPercentageofSatisfiedCustomers($conn)?>, 100"
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text id="EmployeePercentageText" runat="server" x="18" y="20.35" class="percentage"></text>
+      <text id="CustomerPercentageText" runat="server" x="18" y="20.35" class="percentage"><?php echo GetPercentageofSatisfiedCustomers($conn) ?>%</text>
     </svg>
   </div>
 
                       
                     </div>
-                    </div>
-                    <div>
+                             
+                        <div class="DashboardTableBox">
                        
                        <?php                 
                        // How to get information from SQL //
@@ -119,22 +157,40 @@ $domainresult = mysqli_query($conn, $domainQuery) or die(mysqli_error($conn));
                        
 
           
-          echo "<table border='1'>
-<tr>
+          echo "<table class='DomainTable' border='1'>
+<tr class='DomainTableTopRow'>
 <th>Domain Name</th>
 <th>Times Visited</th>
 </tr>";
 
+ 
+
+
+
+
 while($row = mysqli_fetch_assoc($domainresult))
 {
-echo "<tr>";
+ $TableClass = ($x%2 == 0)? 'DomainTableFirstRows': 'DomainTableSecondRows';
+echo "<tr class='$TableClass'>";
 echo "<td>" . $row['DomainName'] . "</td>";
 echo "<td>" . $row['Times Visited'] . "</td>";
 echo "</tr>";
+$x++;
 }
 echo "</table>";
 ?>
                     </div>
+                        
+                    </div>
+                    
+                    <div class="DashboardRightInfoContainer">
+                         <div class="DashboardNumRetBoxPieChart">
+                        
+                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                    </div>
+                    </div>
+                    
                     <div></div>
                 </div>
             </div>

@@ -282,8 +282,14 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
     background-color: #41B412;
 }
 
-.DashboardSmallInfoContainer{
-    display: inline-flex;
+.DashboardLeftInfoContainer{
+   display: inline-block;
+    vertical-align: top;
+}
+
+.DashboardRightInfoContainer{
+    display: inline-block;
+    vertical-align: top;
 }
 
 .DashboardNumRetBox{
@@ -292,10 +298,27 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
     background-color: #FFFFFF;
     margin: 30px;
     box-shadow: 5px 5px 2px 0px #f1f1f1;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.DashboardTableBox{
+    margin: 0px 0px 0px 30px;
+}
+
+.DashboardNumRetBoxPieChart{
+   width: 400px;
+    height: 300px;
+    background-color: #FFFFFF;
+    margin: 30px;
+    box-shadow: 5px 5px 2px 0px #f1f1f1;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
+    padding:10px;
 }
 
 .DashboardNumRetText{
@@ -308,11 +331,11 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
 
 .DashboardNumRetCircle {
   border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 118px;
+    height: 118px;
     padding: 8px;
     background: #0082C3;
-    border: 7px solid #0082C3;
+/*    border: 7px solid #0082C3;*/
     color: #fff;
     font: 60px Arial, sans-serif;
     margin: 0 auto;
@@ -384,4 +407,34 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
     text-align: center;
     text-decoration: underline;
     font-weight: 700;
+}
+
+.PercentageAbove50{
+    stroke: #4CC790 !important;
+}
+
+.PercentageBelow50{
+    stroke: red !important;
+}
+
+.DomainTable{
+        border-collapse: collapse;
+    width: 94%;
+    TEXT-ALIGN: CENTER;
+}
+
+.DomainTableTopRow{
+    background-color: #2C323E;
+    color: #ffffff;
+    height: 40px;
+}
+
+.DomainTableFirstRows{
+    height: 35px;
+    BACKGROUND-COLOR: #EBEBEB;
+}
+
+.DomainTableSecondRows{
+    height: 35px;
+    BACKGROUND-COLOR: #FFFFFF;
 }
