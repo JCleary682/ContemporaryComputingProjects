@@ -89,5 +89,16 @@ LEFT JOIN SocialMedia ON Feedback.Id = SocialMedia.Feedback_Id
 LEFT JOIN Sport ON Feedback.Id = Sport.Feedback_Id 
 LEFT JOIN StreamMedia ON Feedback.Id = StreamMedia.Feedback_Id
 
+#############################################################
 
+#############################################################
+
+===== Inserting CSV =======
+
+
+INSERT into MacAddress (Business_Id,MAC_Address,IP_Address, DateConnected) 
+                   values ('1','HGH','GHGH', '2019-11-21')
+
+"INSERT into MAC_Address (emp_id,firstname,lastname,email,reg_date) 
+                   values ('".$getData[0]."','".$getData[1]."')"
 
