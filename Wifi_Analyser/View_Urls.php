@@ -4,6 +4,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
+<?php
+include ("Secure/Functions.php");
+include ("Secure/connect.php");
+$URLQuery = "SELECT * FROM `Domains`";
+$URLResult = mysqli_query($conn, $URLQuery) or die(mysqli_error($conn));
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -63,6 +70,36 @@ and open the template in the editor.
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
                     <div>
+                        <table class="DomainTable">
+                                        <thead class="DomainTableTopRow">
+                                          <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope='col'>Business ID</th>
+                                            <th scope="col">Domain Name</th>
+                                            <th scope="col">Date Visited</th>
+                                            <th scope="col"></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="">
+                                          <?php
+                                          if(mysqli_num_rows($URLResult)>0){
+
+                                              while($row = mysqli_fetch_assoc($URLResult)){
+                                                  $get_id = $row['Id'];
+                                                  $get_businessid = $row['Business_Id'];
+                                                  $get_domainname = $row['DomainName'];
+                                                  $get_DateVisited = $row['DateVisited'];
+                                                  echo "<tr class = 'UrlTableRows'>
+                                                            <td>$get_id</td>
+                                                            <td>$get_businessid</td>
+                                                            <td>$get_domainname</td>
+                                                            <td>$get_DateVisited</td>
+                                                        </tr>";
+                                              }
+                                          }
+                                          ?>
+                                        </tbody>
+                                    </table>
                        
                     </div>
                     <div></div>

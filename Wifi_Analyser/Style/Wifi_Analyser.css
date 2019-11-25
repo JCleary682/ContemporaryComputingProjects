@@ -438,3 +438,15 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
     height: 35px;
     BACKGROUND-COLOR: #FFFFFF;
 }
+
+tr.UrlTableRows:nth-child(even) {
+    height: 35px;
+    background-color: #FFFFFF;
+}
+
+.UrlTableRows {
+    height: 35px;
+    background-color: #EBEBEB;
+}
+
+
