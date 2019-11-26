@@ -139,7 +139,7 @@ chart.render();
                       
                     </div>
                              
-                        <div class="DashboardTableBox">
+                        <div class="DashboardTableBox" onclick='window.location.href = "View_Urls.php"'>
                        
                        <?php                 
                        // How to get information from SQL //
@@ -190,7 +190,7 @@ echo "</table>";
                     <div class="DashboardRightInfoContainer">
                          <div class="DashboardNumRetBoxPieChart">
                         
-                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                        <div id="chartContainer" style="height: 370px; width: 100%;" onclick='window.location.href = "View_Trends.php"'></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                     </div>
                     </div>

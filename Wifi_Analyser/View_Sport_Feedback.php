@@ -2,21 +2,6 @@
 include ("Secure/Functions.php");
 include ("Secure/connect.php");
 ?>
-<?php
-   
-$TopicPercetages = GetPercentageFromResults($conn);
-
-
-$dataPoints = array( 
-	array("label"=>"News", "y"=>$TopicPercetages[0]),
-	array("label"=>"Other", "y"=>$TopicPercetages[1]),
-	array("label"=>"Social Media", "y"=>$TopicPercetages[2]),
-	array("label"=>"Sport", "y"=>$TopicPercetages[3]),
-	array("label"=>"Stream Media", "y"=>$TopicPercetages[4])
-	
-)
- 
-?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -28,53 +13,8 @@ and open the template in the editor.
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
-          <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       
         <title>Dashboard</title>
                 <script>
-window.onload = function() {
- 
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	title: {
-		text: "Percentage of Popular Topics"
-	},
-	subtitles: [{
-		text: "November 2019"
-	}],
-	data: [{
-		type: "pie",
-                explodeOnClick: false,
-                click: onClick,
-		yValueFormatString: "#,##0.00\"%\"",
-		indexLabel: "{label} ({y})",
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart.render();
-
-function onClick(e) {
-
-var chartLabelid = e.dataPoint.label;
-
-if (chartLabelid == "News") {
-  window.location.href = "View_News_Feedback.php";
-} else if (chartLabelid == "Other") {
-  window.location.href = "View_Other_Feedback.php";
-} else if (chartLabelid == "Social Media") {
-   window.location.href = "View_Media_Feedback.php";
-} else if (chartLabelid == "Sport") {
-   window.location.href = "View_Sport_Feedback.php";
-} else if (chartLabelid == "Stream Media") {
-   window.location.href = "View_Streaming_Feedback.php";
-}
-
-
- 
-}
-
-}
 </script>
     </head>
     <body>
@@ -127,19 +67,54 @@ if (chartLabelid == "News") {
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
                     <div>
-                        <h2> Your trends this month </h2>
-                        <h3> Results taken from your customer questionnaire - click a segment to view what people had to say! </h3>
-                    <div class="DashboardRightInfoContainer">
-                         <div class="DashboardNumRetBoxPieChartTrends">
-                        
-                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                    <h2>Sport Comments</h2>  
+                    <h4>Comments made by your customers who chose "Sport"</h4>
+                    <div class="DashboardTableBox">
+
+<?php                 
+$sportQuery= "SELECT Comment FROM Sport";
+
+$sportResult = mysqli_query($conn, $sportQuery) or die(mysqli_error($conn));
+                       
+
+          
+          echo "<table class='sportTable' border='1'>
+<tr class='sportTopRow'>
+<th>Comment</th>
+</tr>";
+
+ 
+while($row = mysqli_fetch_assoc($sportResult))
+{
+ $TableClass = ($x%2 == 0)? 'sportFirstRows': 'sportTableSecondRows';
+echo "<tr class='$TableClass'>";
+echo "<td>" . $row['Comment'] . "</td>";
+echo "</tr>";
+$x++;
+}
+echo "</table>";
+?>
                     </div>
-                    </div> 
                     </div>
-                    <div></div>
-                </div>
-            </div>
+                  
+               
+          
+<button class="back-button" onclick="goBack()"><img width="40" height="40" class="pure-img-responsive" alt="Back" src="Images/App/back.png"></button>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+    </div>
+                 </div>
+              </div>
         </div>
+        
+            
+            <?php
+        // put your code here
+        ?>
+       
     </body>
 </html>
