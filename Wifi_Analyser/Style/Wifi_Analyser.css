@@ -462,4 +462,21 @@ tr.UrlTableRows:nth-child(even) {
     background-color: #EBEBEB;
 }
 
+.UrlContainer {
+    width: 60%;
+    height: 80%;
+    margin: 0 10px;
+    overflow: scroll;
+}
 
+.domainfilter {
+    padding: 5px;
+}
+
+.OverallContainer {
+    overflow: scroll;
+}
+
+.MainContainer {
+    overflow: scroll;
+}

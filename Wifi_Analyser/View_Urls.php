@@ -9,7 +9,54 @@ and open the template in the editor.
 include ("Secure/Functions.php");
 include ("Secure/connect.php");
 $URLQuery = "SELECT * FROM `Domains`";
+$DropDownQuery = "SELECT * FROM `Domains`";
+$DateVisitedQuery = "SELECT * FROM `Domains`";
+$BusinessQuery = "SELECT * FROM `Domains`";
+
 $URLResult = mysqli_query($conn, $URLQuery) or die(mysqli_error($conn));
+$DropDownQueryResult = mysqli_query($conn, $DropDownQuery) or die(mysqli_error($conn));
+$DateVisitedQueryResult = mysqli_query($conn, $DateVisitedQuery) or die(mysqli_error($conn));
+$BusinessQueryResult = mysqli_query($conn, $BusinessQuery) or die(mysqli_error($conn));
+
+
+//Filtering
+if(isset($_POST['filter'])){
+    $valuetosearch = $_POST['domain'].''.$_POST['date'].''.$_POST['business'];
+    //Check if posting is working
+    echo "$valuetosearch";
+    $query = "SELECT miiLearning_Users.id, miiLearning_Users.name ,miiLearning_Users.profile_pic , miiLearning_subjects.subject, miiLearning_level.level, miiLearning_Users.address
+            FROM `miiLearning_Users`
+            INNER JOIN miiLearning_Tutors
+            ON miiLearning_Tutors.Tutor_id = miiLearning_Users.id
+            INNER JOIN miiLearning_subjects
+            ON miiLearning_Tutors.subjects = miiLearning_subjects.subject_id
+            INNER JOIN miiLearning_level
+            ON miiLearning_level.level_id = miiLearning_Tutors.subject_level
+            WHERE CONCAT(miiLearning_level.level, miiLearning_subjects.subject, miiLearning_Users.address) LIKE '%$valuetosearch%' AND miiLearning_Users.type_id=1";
+    $searchresult = filterurl($query);
+    
+}else{
+    $query="SELECT miiLearning_Users.id, miiLearning_Users.name ,miiLearning_Users.profile_pic , miiLearning_subjects.subject, miiLearning_level.level, miiLearning_Users.address
+            FROM `miiLearning_Tutors`
+            INNER JOIN miiLearning_Users
+            ON miiLearning_Users.id = miiLearning_Tutors.Tutor_id
+            INNER JOIN miiLearning_subjects
+            ON miiLearning_Tutors.subjects = miiLearning_subjects.subject_id
+            INNER JOIN miiLearning_level
+            ON miiLearning_level.level_id = miiLearning_Tutors.subject_level
+            WHERE miiLearning_Users.type_id=1
+            GROUP BY miiLearning_Users.id";
+    $searchresult = filterurl($query);
+}
+
+//Filter function
+function filterurl($query)
+{
+    include("Secure/connect.php");
+    $filterresult = mysqli_query($conn, $query);
+    return $filterresult;
+}
+
 ?>
 <html>
     <head>
@@ -67,11 +114,76 @@ $URLResult = mysqli_query($conn, $URLQuery) or die(mysqli_error($conn));
                 </div>
             </div>
             <div class="MainContainer">
-                <div class="MainInsideTop"></div>
+                <div class="MainInsideTop">
+                </div>
                 <div class="MainInsideRest">
-                    <div>
+                    <h3>Filter By:</h3>
+                    <form action="" method="post" name="filter" action='View_URLS.php'>
+                        <div class="domainfilter">
+                            <select>
+                              <option value="" name='domain' selected>Domain</option>
+                              <?php
+                              if(mysqli_num_rows($DropDownQueryResult) > 0){
+                                        while($row = mysqli_fetch_assoc($DropDownQueryResult)){
+                                            $get_id = $row['Id'];
+                                            $get_businessid = $row['Business_Id'];
+                                            $get_domainname = $row['DomainName'];
+                                            $get_DateVisited = $row['DateVisited'];
+
+                                            //Drop down list for sorting
+
+                                            echo" <option value='$get_domainname' name='domain'>$get_domainname</option>";
+                                        }
+
+                                    }
+                                ?>
+                            </select>
+
+                            <select>
+                              <option value="" name='date' selected>Date Visited</option>
+                              <?php
+                              if(mysqli_num_rows($DateVisitedQueryResult) > 0){
+                                        while($row = mysqli_fetch_assoc($DateVisitedQueryResult)){
+                                            $get_id = $row['Id'];
+                                            $get_businessid = $row['Business_Id'];
+                                            $get_domainname = $row['DomainName'];
+                                            $get_DateVisited = $row['DateVisited'];
+
+                                            //Drop down list for sorting
+
+                                            echo" <option value='$get_DateVisited' name='date'>$get_DateVisited</option>";
+                                        }
+
+                                    }
+                                ?>
+                            </select>
+
+                            <select>
+                              <option value="" name='business' selected>Business</option>
+                              <?php
+                              if(mysqli_num_rows($BusinessQueryResult) > 0){
+                                        while($row = mysqli_fetch_assoc($BusinessQueryResult)){
+                                            $get_id = $row['Id'];
+                                            $get_businessid = $row['Business_Id'];
+                                            $get_domainname = $row['DomainName'];
+                                            $get_DateVisited = $row['DateVisited'];
+
+                                            //Drop down list for sorting
+
+                                            echo" <option value='$get_businessid' name='business'>$get_businessid</option>";
+                                        }
+
+                                    }
+                                ?>
+                            </select>
+                            <button class="" class="submit" type="submit" name="filter" id="filterform">Submit</button>
+                        </div>
+                    </form>
+                    
+
+                    <div class = "UrlContainer">
                         <table class="DomainTable">
-                                        <thead class="DomainTableTopRow">
+                            <thead class="DomainTableTopRow">
                                           <tr>
                                             <th scope="col">ID</th>
                                             <th scope='col'>Business ID</th>
@@ -79,12 +191,12 @@ $URLResult = mysqli_query($conn, $URLQuery) or die(mysqli_error($conn));
                                             <th scope="col">Date Visited</th>
                                             <th scope="col"></th>
                                           </tr>
-                                        </thead>
-                                        <tbody class="">
-                                          <?php
-                                          if(mysqli_num_rows($URLResult)>0){
+                            </thead>
+                            <tbody class="">
+                                <?php
+                                    if(mysqli_num_rows($URLResult)>0){
 
-                                              while($row = mysqli_fetch_assoc($URLResult)){
+                                        while($row = mysqli_fetch_assoc($URLResult)){
                                                   $get_id = $row['Id'];
                                                   $get_businessid = $row['Business_Id'];
                                                   $get_domainname = $row['DomainName'];
@@ -95,11 +207,11 @@ $URLResult = mysqli_query($conn, $URLQuery) or die(mysqli_error($conn));
                                                             <td>$get_domainname</td>
                                                             <td>$get_DateVisited</td>
                                                         </tr>";
-                                              }
-                                          }
-                                          ?>
-                                        </tbody>
-                                    </table>
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                        
                     </div>
                     <div></div>
