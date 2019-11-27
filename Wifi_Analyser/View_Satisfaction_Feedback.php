@@ -14,7 +14,7 @@ and open the template in the editor.
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
         <title>View Satisfaction Feedback</title>
-                <script>
+<script>
 </script>
     </head>
     <body>
