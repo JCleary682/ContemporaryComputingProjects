@@ -53,7 +53,7 @@ $row = mysqli_fetch_assoc($NumCustomersresult);
 
 function GetPercentageofSatisfiedCustomers($conn){
     
-  $Query= "select ROUND(avg(Satisfied = 0) * 100) as Percentage
+  $Query= "select ROUND(avg(Satisfied = 1) * 100) as Percentage
 from Feedback";
   
 $result = mysqli_query($conn, $Query) or die(mysqli_error($conn));

@@ -30,7 +30,7 @@ and open the template in the editor.
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
           <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
        
-        <title>Dashboard</title>
+        <title>View Trends</title>
                 <script>
 window.onload = function() {
  
@@ -107,8 +107,8 @@ if (chartLabelid == "News") {
                             <input type="submit" name="ButtonTrends" value="View Trends" class="Sidebar_Buttons ViewTrendsBtn">
                             </form>
                             
-                            <form method="post" action="View_Notes.php">
-                            <input type="submit" name="ButtonNotes" value="View Notes" class="Sidebar_Buttons ViewNotesBtn">
+                            <form method="post" action="Upload_CSV.php">
+                            <input type="submit" name="ButtonNotes" value="Upload CSV" class="Sidebar_Buttons ViewNotesBtn">
                             </form>
                            
                             <form method="post" action="Settings.php">

@@ -13,8 +13,12 @@ and open the template in the editor.
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
+<<<<<<< Updated upstream
           <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
+=======
+        <title>View Media Feedback</title>
+>>>>>>> Stashed changes
                 <script>
 </script>
     </head>
@@ -48,8 +52,8 @@ and open the template in the editor.
                             <input type="submit" name="ButtonTrends" value="View Trends" class="Sidebar_Buttons ViewTrendsBtn">
                             </form>
                             
-                            <form method="post" action="View_Notes.php">
-                            <input type="submit" name="ButtonNotes" value="View Notes" class="Sidebar_Buttons ViewNotesBtn">
+                            <form method="post" action="Upload_CSV.php">
+                            <input type="submit" name="ButtonNotes" value="Upload CSV" class="Sidebar_Buttons ViewNotesBtn">
                             </form>
                            
                             <form method="post" action="Settings.php">

@@ -59,8 +59,8 @@ $TextboxAmount = $_POST['DiscountsAmount'];
                             <input type="submit" name="ButtonTrends" value="View Trends" class="Sidebar_Buttons ViewTrendsBtn">
                             </form>
                             
-                            <form method="post" action="View_Notes.php">
-                            <input type="submit" name="ButtonNotes" value="View Notes" class="Sidebar_Buttons ViewNotesBtn">
+                            <form method="post" action="Upload_CSV.php">
+                            <input type="submit" name="ButtonNotes" value="Upload CSV" class="Sidebar_Buttons ViewNotesBtn">
                             </form>
                            
                             <form method="post" action="Settings.php">
