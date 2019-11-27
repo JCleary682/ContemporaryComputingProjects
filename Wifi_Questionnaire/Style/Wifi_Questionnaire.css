@@ -1,0 +1,432 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    
+}
+
+a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td, textarea, textArea {
+    font-family: "Raleway", "Century Gothic","sans-serif";
+}
+
+.QuestionnaireContainer{
+       background-color: #2C323E;
+    width: 100%;
+    height: 970px;
+    /* display: block; */
+    /* display: inline-block; */
+    /* position: relative; */
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: inline-flex;
+    -webkit-flex-flow: row nowrap;
+    -moz-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-align-items: flex-end;
+    -moz-align-items: flex-end;
+    align-items: flex-end;
+}
+
+.InsideContainer{
+ background-color: #ffffff;   
+    width: 96%;
+    height: 820px;
+    margin: 2% auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+
+.QuizTitle{
+    height: 126px;
+    width: 100%;
+    position: absolute;
+    top: -127px;
+}
+
+
+.BusinessImg{
+    margin-top: 25px;
+    height: 70px;
+    width: 70px;
+    background-image: url(../Images/Business/Coffee_Cafe/Coffee_Cafe.jpg);
+    background-repeat: no-repeat;
+    background-size: 83px;
+    background-position-x: center;
+    background-position-y: center;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+.MainImgDiv{
+    display: inline-block;
+    width: 6%;
+}
+
+.MainTextDiv{
+    display: inline-block;
+    color: #FFFFFF;
+    width: 87%;
+    text-align: center;
+    vertical-align: text-bottom;
+}
+
+.InfoContainer{
+        color: black;
+    width: 95%;
+    margin: 10px auto;
+    box-shadow: 0px 5px 2px 0px #F8F8F8;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+}
+
+.InfoText{
+        width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.FirstQustionDiv{
+    color: black;
+    height: 170px;
+    width: 95%;
+    margin: 10px auto;
+    box-shadow: 0px 5px 2px 0px #F8F8F8;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    
+}
+
+.TextBoxesDiv{
+    display: flex;   
+    flex-wrap: wrap;
+    color: black;
+    width: 95%;
+    margin: 10px auto;
+    box-shadow: 0px 5px 2px 0px #F8F8F8;
+    border: none;
+    border-radius: 10px;   
+}
+
+.IndividualTextBoxDiv{
+    padding: 0px 20px 20px 10px;
+    text-align: center;
+    display: none;
+}
+
+.TextBox{
+        height: 100px;
+    width: 250px;
+    /* border: none; */
+    border: solid 1px #ccc;
+    border-radius: 10px;
+}
+
+.QuestionText{
+        padding: 10px 0px 0px 10px;
+}
+
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+  border-radius: 10px;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #0082C3;
+}
+.option-input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 26.66667px;
+  text-align: center;
+  line-height: 40px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #0082C3;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+  border-radius: 10px;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+.ChkBoxContainer{
+    width: 150px;
+    text-align: center;
+    padding: 10px 20px 0px 10px;
+    
+}
+
+.ChkBoxLabel{
+        display: block;
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    animation-duration:2.5s;
+}
+
+.SubmitBtn{
+    display: none;
+        cursor: pointer;
+    border: none;
+    background-repeat: no-repeat;
+    color: white;
+    background-size: 25px;
+    background-position-x: 67%;
+    background-position-y: center;
+    width: 130px;
+    height: 50px;
+    font-size: 15px;
+    -webkit-appearance: none;
+    transition: all 0.5s ease;
+    border-radius: 10px;
+    appearance: none;
+    background-color: #41B412;
+        position: absolute;
+    right: 100px;
+    bottom: 50px;
+}
+
+.DiscountDiv{
+    color: black;
+    height: 170px;
+    width: 35%;
+    margin: 50px auto;
+    box-shadow: 0px 5px 2px 0px #F8F8F8;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #F6F5FB;
+    padding: 6px 0px;
+    
+} 
+.DiscountContainer{
+    background-color: #2C323E;
+    width: 100%;
+    height: 700px;
+    /* display: block; */
+    /* display: inline-block; */
+    /* position: relative; */
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: inline-flex;
+    -webkit-flex-flow: row nowrap;
+    -moz-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-align-items: flex-end;
+    -moz-align-items: flex-end;
+    align-items: flex-end;
+}
+
+.DiscountInsideContainer{
+    background-color: #ffffff;
+    width: 96%;
+    height: 550px;
+    margin: 2% auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+.BtnExtra{
+       
+}
+@media only screen and (max-width: 1000px) {
+    .QuestionText{
+        font-size: 20px;
+    width: 300px;
+    }
+    
+    .QuestionnaireContainer{
+        height: 1270px !important;
+    }
+    .InsideContainer{
+            height: 1120px !important;
+    }
+    
+}
+
+@media only screen and (max-width: 950px) {
+  
+    .QuestionnaireContainer{
+        height: 1370px !important;
+    }
+    .InsideContainer{
+            height: 1220px !important;
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+    .DiscountDiv{
+        width:60%;
+    }
+    .FirstQustionDiv {
+        display: block;
+    }
+  .QuestionText {
+    font-size: 20px;
+    display: block;
+    width:unset;
+  }
+  .ChkBoxContainer {
+    text-align: center;
+    padding: 0px 20px 0px 20px;
+    display: inline-block;
+    width: unset;
+  }
+    .QuestionnaireContainer{
+        height: 1470px !important;
+    }
+    .InsideContainer{
+            height: 1320px !important;
+    }
+    
+    .MainTextDiv{
+        vertical-align: bottom;
+    font-size: 14px;
+    }
+    
+}
+
+@media only screen and (max-width: 670px) {
+    .FirstQustionDiv{
+        height: unset;
+    }
+    .ChkBoxContainer {
+        height:80px;
+    }
+    .option-input{
+            height: 30px;
+    width: 30px;
+    }
+    
+    .option-input:checked::before {
+            height: 30px;
+    width: 30px;
+    line-height: 30px;
+    }
+    .ChkBoxLabel{
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 630px) {
+    .MainImgDiv{
+        width:13%;
+    }
+    .MainTextDiv{
+        width: 80%;
+        text-align: center;
+    }
+    .QuestionnaireContainer {
+    height: 1670px !important;
+}
+.InsideContainer {
+    height: 1520px !important;
+}
+.BtnExtra{
+        width: 100%;
+}
+.SubmitBtn{
+        position: unset;
+        margin-bottom: 20px;
+    margin-left: 10px;
+}
+}
+
+
+@media only screen and (max-width: 600px) {
+    .DiscountDiv {
+    width: 90%;
+}
+     .QuestionnaireContainer {
+    height: 1770px !important;
+}
+.InsideContainer {
+    height: 1620px !important;
+}
+}
+
+@media only screen and (max-width: 450px) {
+    .MainTextDiv {
+    font-size: 3vw;
+    padding-left: 10px;
+}
+}
+
+@media only screen and (max-width: 340px) {
+       .QuestionnaireContainer {
+    height: 1870px !important;
+}
+.InsideContainer {
+    height: 1720px !important;
+}
+}
