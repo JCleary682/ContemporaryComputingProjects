@@ -13,6 +13,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
+          <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
                 <script>
 </script>
@@ -72,21 +73,21 @@ and open the template in the editor.
                     <div class="DashboardTableBox">
 
 <?php                 
-$sportQuery= "SELECT Comment FROM Sport";
+$sportQuery= "SELECT Comment FROM Sport WHERE Comment !=''";
 
 $sportResult = mysqli_query($conn, $sportQuery) or die(mysqli_error($conn));
                        
 
           
-          echo "<table class='sportTable' border='1'>
-<tr class='sportTopRow'>
+          echo "<table class='DomainTable' border='1'>
+<tr class='DomainTableTopRow'>
 <th>Comment</th>
 </tr>";
 
  
 while($row = mysqli_fetch_assoc($sportResult))
 {
- $TableClass = ($x%2 == 0)? 'sportFirstRows': 'sportTableSecondRows';
+ $TableClass = ($x%2 == 0)? 'DomainTableFirstRows': 'DomainTableSecondRows';
 echo "<tr class='$TableClass'>";
 echo "<td>" . $row['Comment'] . "</td>";
 echo "</tr>";
