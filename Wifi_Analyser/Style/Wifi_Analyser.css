@@ -475,11 +475,3 @@ tr.UrlTableRows:nth-child(even) {
 .domainfilter {
     padding: 5px;
 }
-
-.OverallContainer {
-    overflow: scroll;
-}
-
-.MainContainer {
-    overflow: scroll;
-}

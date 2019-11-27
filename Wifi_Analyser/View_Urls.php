@@ -9,44 +9,40 @@ and open the template in the editor.
 include ("Secure/Functions.php");
 include ("Secure/connect.php");
 $URLQuery = "SELECT * FROM `Domains`";
-$DropDownQuery = "SELECT * FROM `Domains`";
-$DateVisitedQuery = "SELECT * FROM `Domains`";
-$BusinessQuery = "SELECT * FROM `Domains`";
+$DropDownQuery = "SELECT * FROM `Domains` GROUP BY `DomainName`";
+$DateVisitedQuery = "SELECT * FROM `Domains` GROUP BY `DateVisited`";
+$BusinessQuery = "SELECT * FROM `Domains` GROUP BY `Business_Id`";
 
 $URLResult = mysqli_query($conn, $URLQuery) or die(mysqli_error($conn));
 $DropDownQueryResult = mysqli_query($conn, $DropDownQuery) or die(mysqli_error($conn));
 $DateVisitedQueryResult = mysqli_query($conn, $DateVisitedQuery) or die(mysqli_error($conn));
 $BusinessQueryResult = mysqli_query($conn, $BusinessQuery) or die(mysqli_error($conn));
 
-
 //Filtering
-if(isset($_POST['filter'])){
-    $valuetosearch = $_POST['domain'].''.$_POST['date'].''.$_POST['business'];
+if(isset($_POST['filterdomain'])){
+    $valuetosearch = $_POST['domain'];
     //Check if posting is working
-    echo "$valuetosearch";
-    $query = "SELECT miiLearning_Users.id, miiLearning_Users.name ,miiLearning_Users.profile_pic , miiLearning_subjects.subject, miiLearning_level.level, miiLearning_Users.address
-            FROM `miiLearning_Users`
-            INNER JOIN miiLearning_Tutors
-            ON miiLearning_Tutors.Tutor_id = miiLearning_Users.id
-            INNER JOIN miiLearning_subjects
-            ON miiLearning_Tutors.subjects = miiLearning_subjects.subject_id
-            INNER JOIN miiLearning_level
-            ON miiLearning_level.level_id = miiLearning_Tutors.subject_level
-            WHERE CONCAT(miiLearning_level.level, miiLearning_subjects.subject, miiLearning_Users.address) LIKE '%$valuetosearch%' AND miiLearning_Users.type_id=1";
+    //echo "$valuetosearch";
+    $query = "SELECT `id`, `DomainName`, `DateVisited`
+            FROM `Domains`
+            WHERE `DomainName` LIKE '%$valuetosearch%'";
     $searchresult = filterurl($query);
     
-}else{
-    $query="SELECT miiLearning_Users.id, miiLearning_Users.name ,miiLearning_Users.profile_pic , miiLearning_subjects.subject, miiLearning_level.level, miiLearning_Users.address
-            FROM `miiLearning_Tutors`
-            INNER JOIN miiLearning_Users
-            ON miiLearning_Users.id = miiLearning_Tutors.Tutor_id
-            INNER JOIN miiLearning_subjects
-            ON miiLearning_Tutors.subjects = miiLearning_subjects.subject_id
-            INNER JOIN miiLearning_level
-            ON miiLearning_level.level_id = miiLearning_Tutors.subject_level
-            WHERE miiLearning_Users.type_id=1
-            GROUP BY miiLearning_Users.id";
+}else if (isset($_POST['filterdate'])){
+    $valuetosearch = $_POST['date'];
+    //Check if posting is working
+    //echo "$valuetosearch";
+    
+    $query = "SELECT `id`, `DomainName`, `DateVisited`
+            FROM `Domains`
+            WHERE `DateVisited` = '$valuetosearch'";
+            
     $searchresult = filterurl($query);
+    
+} else {
+    $query="SELECT * FROM `Domains`";
+    $searchresult = filterurl($query);
+    //echo $searchresult;
 }
 
 //Filter function
@@ -118,10 +114,12 @@ function filterurl($query)
                 </div>
                 <div class="MainInsideRest">
                     <h3>Filter By:</h3>
-                    <form action="" method="post" name="filter" action='View_URLS.php'>
+                    <!-- Filter By Domain -->
+                    <form method="post" name="filterdomain" action='View_Urls.php'>
                         <div class="domainfilter">
-                            <select>
-                              <option value="" name='domain' selected>Domain</option>
+                            <!-- Filter By Domain -->
+                            <select name = 'domain'>
+                              <option selected>Domain</option>
                               <?php
                               if(mysqli_num_rows($DropDownQueryResult) > 0){
                                         while($row = mysqli_fetch_assoc($DropDownQueryResult)){
@@ -132,15 +130,24 @@ function filterurl($query)
 
                                             //Drop down list for sorting
 
-                                            echo" <option value='$get_domainname' name='domain'>$get_domainname</option>";
+                                            echo" <option value='$get_domainname' name=''>$get_domainname</option>";
                                         }
 
                                     }
                                 ?>
                             </select>
 
-                            <select>
-                              <option value="" name='date' selected>Date Visited</option>
+                            <button class="submit" type="submit" name="filterdomain" id="filterform">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Filter By Date -->
+                    <form method="post" name="filterdate" action='View_Urls.php'>
+                        <div class="domainfilter">
+                            <!-- Filter by Date -->
+                            <select name = 'date'>
+                              <option selected>Date</option>
                               <?php
                               if(mysqli_num_rows($DateVisitedQueryResult) > 0){
                                         while($row = mysqli_fetch_assoc($DateVisitedQueryResult)){
@@ -151,32 +158,16 @@ function filterurl($query)
 
                                             //Drop down list for sorting
 
-                                            echo" <option value='$get_DateVisited' name='date'>$get_DateVisited</option>";
+                                            echo" <option value='$get_DateVisited' name=''>$get_DateVisited</option>";
                                         }
 
                                     }
                                 ?>
                             </select>
 
-                            <select>
-                              <option value="" name='business' selected>Business</option>
-                              <?php
-                              if(mysqli_num_rows($BusinessQueryResult) > 0){
-                                        while($row = mysqli_fetch_assoc($BusinessQueryResult)){
-                                            $get_id = $row['Id'];
-                                            $get_businessid = $row['Business_Id'];
-                                            $get_domainname = $row['DomainName'];
-                                            $get_DateVisited = $row['DateVisited'];
-
-                                            //Drop down list for sorting
-
-                                            echo" <option value='$get_businessid' name='business'>$get_businessid</option>";
-                                        }
-
-                                    }
-                                ?>
-                            </select>
-                            <button class="" class="submit" type="submit" name="filter" id="filterform">Submit</button>
+                            <button class="submit" type="submit" name="filterdate" id="filterform">
+                                Submit
+                            </button>
                         </div>
                     </form>
                     
@@ -185,8 +176,6 @@ function filterurl($query)
                         <table class="DomainTable">
                             <thead class="DomainTableTopRow">
                                           <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope='col'>Business ID</th>
                                             <th scope="col">Domain Name</th>
                                             <th scope="col">Date Visited</th>
                                             <th scope="col"></th>
@@ -194,16 +183,14 @@ function filterurl($query)
                             </thead>
                             <tbody class="">
                                 <?php
-                                    if(mysqli_num_rows($URLResult)>0){
+                                    if(mysqli_num_rows($searchresult)>0){
 
-                                        while($row = mysqli_fetch_assoc($URLResult)){
+                                        while($row = mysqli_fetch_assoc($searchresult)){
                                                   $get_id = $row['Id'];
                                                   $get_businessid = $row['Business_Id'];
                                                   $get_domainname = $row['DomainName'];
                                                   $get_DateVisited = $row['DateVisited'];
                                                   echo "<tr class = 'UrlTableRows'>
-                                                            <td>$get_id</td>
-                                                            <td>$get_businessid</td>
                                                             <td>$get_domainname</td>
                                                             <td>$get_DateVisited</td>
                                                         </tr>";
