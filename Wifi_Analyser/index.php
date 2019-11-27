@@ -66,7 +66,7 @@ chart.render();
                 <div class="SidebarInsideRest">
                     <div class="SidebarImgContainer">
                         <form name="AccountDetails" action="Account.php">
-                       <div onclick="AccountDetails.submit();" class="SidebarImg">                            
+                            <div onclick="AccountDetails.submit();" class="SidebarImg">                            
                         </div>
                         </form>
                      

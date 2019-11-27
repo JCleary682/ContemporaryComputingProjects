@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
+<?PHP
+
+include ("Secure/connect.php");
+
+
+
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
           <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       
+         <?php
+                                 
+        
+        
+          $TextboxName = $_POST['BusinessName'];
+ $TextboxType = $_POST['BusinesType'];
+  $TextboxEmail = $_POST['BusinesEmail'];
+ $TextboxAddress =  $_POST['BusinessAddress'];
+ $TextboxTown = $_POST['BusinessTown'];
+ $TextboxPostcode = $_POST['BusinessPostCode'];
+  $TextboxImgUrl = $_POST['BusinessLogoImg'];
+  
+  if(isset($_POST['BusinessSubmit'])){
+ $UpdateSql = "UPDATE Business SET Name = '$TextboxName', Type = '$TextboxType', Email= '$TextboxEmail', Address='$TextboxAddress', Town= '$TextboxTown', Postcode='$TextboxPostcode', Img='$TextboxImgUrl' WHERE Id = 1;";
+    
+                   mysqli_query($conn, $UpdateSql);
+  }
+  
+  $AccountQuery= "SELECT * FROM Business WHERE Id = 1";
+
+$Accresult = mysqli_query($conn, $AccountQuery) or die(mysqli_error($conn));
+$row = mysqli_fetch_assoc($Accresult);
+                        ?>
 
         <title>Dashboard</title>
     </head>
@@ -21,7 +47,7 @@ and open the template in the editor.
                 <div class="SidebarInsideRest">
                     <div class="SidebarImgContainer">
                         <form name="AccountDetails" action="Account.php">
-                       <div onclick="AccountDetails.submit();" class="SidebarImg">                            
+                       <div onclick="AccountDetails.submit();" class="SidebarImg"  style="background-image: url(<?php echo $row['Img']; ?>)">                            
                         </div>
                         </form>
                      
@@ -65,13 +91,15 @@ and open the template in the editor.
                 <div class="MainInsideRest">
                     <div class="AccountBox1">
                         <h1 class="AccountMainText">Account Settings</h1>
-                        <form method="post">
-                            <div class="AccountTextContainerDiv"><p class="AccountText">Business Name:</p> <input class="AccountTextBox" type="text" name="BusinessName"/></div>
-                            <div class="AccountTextContainerDiv"><p class="AccountText">Business Type:</p> <input class="AccountTextBox" type="text" name="BusinesType"/></div>
-                            <div class="AccountTextContainerDiv"><p class="AccountText">Address:</p> <input class="AccountTextBox" type="text" name="BusinessAddress"/></div>
-                            <div class="AccountTextContainerDiv"><p class="AccountText">Town:</p> <input class="AccountTextBoxSmall" type="text" name="BusinessTown"/></div>
-                            <div class="AccountTextContainerDiv"><p class="AccountText">Post Code</p> <input class="AccountTextBoxSmall" type="text" name="BusinessPostCode"/></div>
-                            <div class="AccountTextContainerDiv"> <p class="AccountText">Logo Image:</p> <input class="AccountTextBox" type="text" name="BusinessLogoImg"/></div>
+                      
+                        <form method="post" action="?">
+                            <div class="AccountTextContainerDiv"><p class="AccountText">Business Name:</p> <input class="AccountTextBox" type="text" name="BusinessName" value="<?php echo $row['Name']; ?>"/></div>
+                            <div class="AccountTextContainerDiv"><p class="AccountText">Business Type:</p> <input class="AccountTextBox" type="text" name="BusinesType" value="<?php echo $row['Type']; ?>"/></div>
+                          <div class="AccountTextContainerDiv"><p class="AccountText">Email:</p> <input class="AccountTextBox" type="text" name="BusinesEmail" value="<?php echo $row['Email']; ?>"/></div>                        
+                            <div class="AccountTextContainerDiv"><p class="AccountText">Address:</p> <input class="AccountTextBox" type="text" name="BusinessAddress" value="<?php echo $row['Address']; ?>"/></div>
+                            <div class="AccountTextContainerDiv"><p class="AccountText">Town:</p> <input class="AccountTextBoxSmall" type="text" name="BusinessTown" value="<?php echo $row['Town']; ?>"/></div>
+                            <div class="AccountTextContainerDiv"><p class="AccountText">Post Code</p> <input class="AccountTextBoxSmall" type="text" name="BusinessPostCode" value="<?php echo $row['Postcode']; ?>"/></div>
+                            <div class="AccountTextContainerDiv"> <p class="AccountText">Logo Image:</p> <input class="AccountTextBox" type="text" name="BusinessLogoImg" value="<?php echo $row['Img']; ?>"/></div>
                             <div><input class="AccountSubmitBtn" type="submit"  name="BusinessSubmit" value="Submit"/></div>
 </form>
                     </div>
@@ -82,7 +110,7 @@ and open the template in the editor.
         
             
             <?php
-        // put your code here
+     
         ?>
        
     </body>

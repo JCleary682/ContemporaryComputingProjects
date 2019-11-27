@@ -253,6 +253,7 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
     width: 50%;
     border: 1px solid;
     border-color: #7d7d80;
+    padding: 0px 5px;
 }
 
 .AccountTextBoxSmall{
@@ -260,6 +261,7 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
     width: 30%;
     border: 1px solid;
     border-color: #7d7d80;
+      padding: 0px 5px;
 }
 
 .AccountSubmitBtn{

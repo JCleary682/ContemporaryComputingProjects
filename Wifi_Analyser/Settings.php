@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+include ("Secure/connect.php");
+session_start();
+//
+//
+$TextboxAmount = $_POST['DiscountsAmount'];
+ $TextboxCode = $_POST['DiscountsCode'];
+ 
+ if(!empty($TextboxAmount) && !empty($TextboxCode)){
+     $sql = "INSERT INTO Discounts(Business_Id, Amount, DiscountCode, Used, Allocated, DateUsed)"
+        . " VALUES ('1','$TextboxAmount', '$TextboxCode', '0', '0', '0000-00-00')";   
+       mysqli_query($conn, $sql);
+ }else{
+ }
+     
+ 
+
+
+
+?>
 <html>
     <head>
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
+          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/newCss.css">
           <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
        
-        <title>Dashboard</title>
+        <title>Settings</title>
     </head>
     <body>
         <div class="OverallContainer">
@@ -62,10 +78,50 @@ and open the template in the editor.
             <div class="MainContainer">
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
+                     <form method="post" action="?">
                     <div>
-                       
+                        <div class="DiscountDiv">    
+                        <h2>Enter Discount Details</h2>
+                        <div class="SpaceTop">
+                        <p>Enter Amount:</p>
+                        <input type="text" class="TextBoxSettings" name="DiscountsAmount">
+                        <p>Enter Discount Code:</p>
+                        <input type="text" class="TextBoxSettings" name="DiscountsCode">
+                           <input type="submit" id="SubmitBtn" class="SubmitBtn">
+                            </div>
+                        </div>
+                        <div class="SettingsTableDiv">
+                            <h2>Discount Codes Currently Available:</h2>
+                            <?php
+                            $SelectSQL = "SELECT Amount, DiscountCode FROM `Discounts` "
+            . "    LEFT JOIN Business ON Discounts.Id = Business.Id WHERE Business_Id = 1 AND Used = 0 ORDER BY Amount ASC";
+
+$DiscountAvailable = mysqli_query($conn, $SelectSQL);
+                              echo "<table class='SettingsTable' border='1'>
+<tr class='DomainTableTopRow'>
+<th>Amount</th>
+<th>Discount Codes</th>
+</tr>";
+
+ 
+
+
+
+
+while($row = mysqli_fetch_assoc($DiscountAvailable))
+{
+ $TableClass = ($x%2 == 0)? 'DomainTableFirstRows': 'DomainTableSecondRows';
+echo "<tr class='$TableClass'>";
+echo "<td>" . $row['Amount'] . "</td>";
+echo "<td>" . $row['DiscountCode'] . "</td>";
+echo "</tr>";
+$x++;
+}
+echo "</table>";
+                            ?>                         
+                        </div>
                     </div>
-                    <div></div>
+                    </form>
                 </div>
             </div>
         </div>
