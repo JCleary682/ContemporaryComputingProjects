@@ -102,3 +102,19 @@ INSERT into MacAddress (Business_Id,MAC_Address,IP_Address, DateConnected)
 "INSERT into MAC_Address (emp_id,firstname,lastname,email,reg_date) 
                    values ('".$getData[0]."','".$getData[1]."')"
 
+#############################################################
+
+#############################################################
+
+===== Number of unique MAC Addresses in past week (Numer of customers)=======
+
+SELECT COUNT(DISTINCT MAC_Address) from MacAddress WHERE DateConnected >= CURRENT_DATE - 7
+
+#############################################################
+
+#############################################################
+
+===== Number of Returning Customers in last week (MAC Addresses which have connected more than once)=======
+
+SELECT COUNT(*) as ReturningCustomers FROM (SELECT MAC_Address, COUNT(*) occurances FROM MacAddress 
+WHERE DateConnected >= CURRENT_DATE - 7 GROUP BY MAC_Address HAVING COUNT(*) > 1) AS B

@@ -47,7 +47,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	}],
 	data: [{
 		type: "pie",
-                click: onClick,
 		yValueFormatString: "#,##0.00\"%\"",
 		indexLabel: "{label} ({y})",
 		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
@@ -110,6 +109,10 @@ chart.render();
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
                     <div class="DashboardLeftInfoContainer">
+                        <div class="DashboardNumRetBox">
+                        <div class="DashboardNumRetText"><p>Number of Customers This Week</p></div>
+                        <div class="DashboardNumRetCircle"><?php echo GetNumberofCustomers($conn) ?></div>
+                    </div>
                     <div class="DashboardNumRetBox">
                         <div class="DashboardNumRetText"><p>Number of Returning Customers This Week</p></div>
                         <div class="DashboardNumRetCircle"><?php echo GetNumberofReturningCustomers($conn) ?></div>
@@ -119,7 +122,7 @@ chart.render();
                         <div class="DashboardNumRetText"><p>Percentage of Satisfied Customers This Week</p></div>
                           
 
-                      <div class="single-chart">
+                      <div class="single-chart" onclick='window.location.href = "View_Satisfaction_Feedback.php"'>
     <svg viewBox="0 0 36 36" class="circular-chart green">
       <path class="circle-bg"
         d="M18 2.0845
@@ -139,6 +142,11 @@ chart.render();
                       
                     </div>
                              
+                        
+                        
+                    </div>
+                    
+                    <div class="DashboardRightInfoContainer">
                         <div class="DashboardTableBox" onclick='window.location.href = "View_Urls.php"'>
                        
                        <?php                 
@@ -184,10 +192,6 @@ $x++;
 echo "</table>";
 ?>
                     </div>
-                        
-                    </div>
-                    
-                    <div class="DashboardRightInfoContainer">
                          <div class="DashboardNumRetBoxPieChart">
                         
                         <div id="chartContainer" style="height: 370px; width: 100%;" onclick='window.location.href = "View_Trends.php"'></div>

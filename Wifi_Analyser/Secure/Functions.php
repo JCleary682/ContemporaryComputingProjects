@@ -24,8 +24,8 @@ return $domainresult;
 
 function GetNumberofReturningCustomers($conn){
     
-  $NumReturningQuery= "select count(*) As 'Customers Returned' from (SELECT MAC_Address, count(MAC_Address) as 'Number of Visits' FROM MacAddress WHERE Business_Id = 1 AND YEARWEEK(DateConnected, 1) = YEARWEEK(CURDATE(), 1) group by MAC_Address
-order by count(MAC_Address) desc ) as x;";
+  $NumReturningQuery= "SELECT COUNT(*) as `Customers Returned` FROM (SELECT MAC_Address, COUNT(*) occurances FROM MacAddress 
+          WHERE DateConnected >= CURRENT_DATE - 7 GROUP BY MAC_Address HAVING COUNT(*) > 1) AS B";
   
 $Returningresult = mysqli_query($conn, $NumReturningQuery) or die(mysqli_error($conn));
 
@@ -34,6 +34,20 @@ $row = mysqli_fetch_assoc($Returningresult);
  $NumCustReturned = $row["Customers Returned"];
 
  return $NumCustReturned;
+ 
+}
+
+function GetNumberofCustomers($conn){
+    
+  $NumCustomersQuery= "SELECT COUNT(DISTINCT MAC_Address) as `Number of Customers` from MacAddress WHERE DateConnected >= CURRENT_DATE - 7";
+  
+$NumCustomersresult = mysqli_query($conn, $NumCustomersQuery) or die(mysqli_error($conn));
+
+$row = mysqli_fetch_assoc($NumCustomersresult);
+
+ $NumCustomers = $row["Number of Customers"];
+
+ return $NumCustomers;
  
 }
 
