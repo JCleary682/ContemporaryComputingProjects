@@ -11,22 +11,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-<<<<<<< Updated upstream
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>View Streaming Feedback</title>
 <script>
-=======
-         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-         <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
-
-          <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
-        <title>View Streaming Feedback</title>
-
-                <script>
->>>>>>> Stashed changes
 </script>
     </head>
     <body>

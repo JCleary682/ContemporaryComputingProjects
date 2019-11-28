@@ -13,19 +13,10 @@ and open the template in the editor.
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
-<<<<<<< Updated upstream
+
           <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>View Other Feedback</title>
 <script>
-=======
-
-          <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-
-        <title>View Other Feedback</title>
-
-                <script>
->>>>>>> Stashed changes
 </script>
     </head>
     <body>
