@@ -113,8 +113,9 @@ function filterurl($query)
                 <div class="MainInsideTop">
                 </div>
                 <div class="MainInsideRest">
-                    <h1>View URLs and Dates Visited</h1>
+                    
                     <div class="ViewUrlsTextDiv">
+                        <h2>View URLs and Dates Visited</h2>
                     <h3>Filter By:</h3>
                     <!-- Filter By Domain -->
                     <form method="post" class="FormInline" name="filterdomain" action='View_Urls.php'>
