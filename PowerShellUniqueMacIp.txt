@@ -1,0 +1,20 @@
+#-- Step 1: Import Csv, set csv to variable --#
+
+C:\Users\mconw> $header ="macaddress","ipaddress","third"
+ $file = import-csv -path .\resultTidy.csv -header $header
+
+#####################
+
+#-- Step 2: Unique csv- with two headers, set new file to variable   --#
+
+$newFile = $file | select-object  macaddress, ipaddress -unique
+PS C:\Users\mconw> $newfile
+
+#####################
+
+#-- Step 3: Save variable to csv --#
+
+ $newFile | Export-Csv -NoTypeInformation 'C:\Users\mconw\newResult2.csv'
+
+
+#####################
