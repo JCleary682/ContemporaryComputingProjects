@@ -13,9 +13,18 @@ and open the template in the editor.
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
+<<<<<<< Updated upstream
           <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>View News Feedback</title>
 <script>
+=======
+
+          <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <title>View News Feedback</title>
+
+                <script>
+>>>>>>> Stashed changes
 </script>
     </head>
     <body>
@@ -67,8 +76,10 @@ and open the template in the editor.
             <div class="MainContainer">
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
+                    <div class="SatisfactionText">
                      <h2>News Comments</h2>  
                      <h4>Comments made by your customers who chose "News"</h4>
+                    </div>
                     <div>
                                            <div class="DashboardTableBox">
                        
@@ -97,7 +108,7 @@ echo "</table>";
 ?>
                     </div>
                     </div>
-                <button class="back-button" onclick="goBack()"><img width="40" height="40" class="pure-img-responsive" alt="Back" src="Images/App/back.png"></button>
+                <button class="back-button backButtonMargin" onclick="goBack()"><img width="40" height="40" class="pure-img-responsive" alt="Back" src="Images/App/back.png"></button>
 
 <script>
 function goBack() {

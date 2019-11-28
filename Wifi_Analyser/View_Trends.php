@@ -127,10 +127,14 @@ if (chartLabelid == "News") {
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
                     <div>
-                        <h2> Your trends this month </h2>
-                        <h3> Results taken from your customer questionnaire - click a segment to view what people had to say! </h3>
-                    <div class="DashboardRightInfoContainer">
+                        <div>
+                       
+                        <div class="DashboardRightInfoContainer">
+                         
                          <div class="DashboardNumRetBoxPieChartTrends">
+                                 <h2> Your trends this month </h2>
+                                 <h3 class="TrendsText"> Results taken from your customer questionnaire - click a segment to view what people had to say! </h3>
+                       
                         
                         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

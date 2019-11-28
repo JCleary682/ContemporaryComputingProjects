@@ -113,10 +113,14 @@ function filterurl($query)
                 <div class="MainInsideTop">
                 </div>
                 <div class="MainInsideRest">
+<<<<<<< Updated upstream
                     <h1>View URLs and Dates Visited</h1>
+=======
+                    <div class="ViewUrlsTextDiv">
+>>>>>>> Stashed changes
                     <h3>Filter By:</h3>
                     <!-- Filter By Domain -->
-                    <form method="post" name="filterdomain" action='View_Urls.php'>
+                    <form method="post" class="FormInline" name="filterdomain" action='View_Urls.php'>
                         <div class="domainfilter">
                             <!-- Filter By Domain -->
                             <select name = 'domain'>
@@ -144,7 +148,7 @@ function filterurl($query)
                         </div>
                     </form>
                     <!-- Filter By Date -->
-                    <form method="post" name="filterdate" action='View_Urls.php'>
+                    <form method="post" class="FormInline" name="filterdate" action='View_Urls.php'>
                         <div class="domainfilter">
                             <!-- Filter by Date -->
                             <select name = 'date'>
@@ -172,7 +176,7 @@ function filterurl($query)
                         </div>
                     </form>
                     
-
+                    </div>
                     <div class = "UrlContainer">
                         <table class="DomainTable">
                             <thead class="DomainTableTopRow">

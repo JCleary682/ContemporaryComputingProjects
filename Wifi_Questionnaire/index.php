@@ -20,7 +20,7 @@
                 </div>
                 <div>
                     <div class="InfoContainer">
-                        <p class="InfoText">Answer all questions for a discount code</p>
+                        <p class="InfoText">Hey! We have recognised you as a returning customer and want to hear from you. Filling out this short questionnaire will earn you a <b>discount code</b>, don't worry though - we don't collect any personal information and anything you enter will only be used by us.</p>
                     </div>
                     <div class="FirstQustionDiv">
                         <h2 class="QuestionText">Q1: What do you search whilst using the public Wi-Fi?</h2>

@@ -120,7 +120,7 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
 }
 
 .ViewNotesBtn{
-    background: url(../Images/App/Notes_White.png);
+    background: url(../Images/App/UploadCSV_White.png);
     background-repeat: no-repeat;
     background-size: 18px;
     background-position-x: 7px;
@@ -128,7 +128,7 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
 }
 
 .ViewNotesBtn:hover{
-     background: url(../Images/App/Notes_Blue.png);
+     background: url(../Images/App/UploadCSV_Blue.png);
      background-repeat: no-repeat;
     background-size: 18px;
     background-position-x: 7px;
@@ -328,7 +328,7 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
 
 .DashboardNumRetBoxPieChartTrends{
    width: 600px;
-    height: 400px;
+    height: 450px;
     background-color: #FFFFFF;
     margin: 30px;
     box-shadow: 5px 5px 2px 0px #f1f1f1;
@@ -476,4 +476,26 @@ tr.UrlTableRows:nth-child(even) {
 
 .domainfilter {
     padding: 5px;
+}
+
+.ViewUrlsTextDiv{
+    margin: 0px 0px 15px 10px;
+    width: 56.5%;
+}
+
+.FormInline{
+    display: inline-block;
+}
+
+.SatisfactionText{
+        margin: 0px 0px 0px 30px;
+}
+
+.TrendsText{
+        margin: 0px 20px 30px 20px;
+        text-align: center;
+}
+
+.backButtonMargin{
+    margin: 30px;
 }

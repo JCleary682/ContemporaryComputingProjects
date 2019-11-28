@@ -85,7 +85,6 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
         width: 100%;
     text-align: center;
     font-size: 15px;
-    font-weight: 800;
 }
 
 .FirstQustionDiv{
@@ -415,6 +414,24 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
 }
 }
 
+@media only screen and (max-width: 550px) {
+     .QuestionnaireContainer {
+    height: 1810px !important;
+}
+.InsideContainer {
+    height: 1660px !important;
+}
+}
+
+@media only screen and (max-width: 500px) {
+     .QuestionnaireContainer {
+    height: 1870px !important;
+}
+.InsideContainer {
+    height: 1720px !important;
+}
+}
+
 @media only screen and (max-width: 450px) {
     .MainTextDiv {
     font-size: 3vw;
@@ -424,9 +441,9 @@ a, p, span, input, button, label, select, h1, h2, h3, h4, h5, h6, h7, li, th, td
 
 @media only screen and (max-width: 340px) {
        .QuestionnaireContainer {
-    height: 1870px !important;
+    height: 1940px !important;
 }
 .InsideContainer {
-    height: 1720px !important;
+    height: 1790px !important;
 }
 }

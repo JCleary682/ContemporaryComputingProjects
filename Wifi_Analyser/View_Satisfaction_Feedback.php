@@ -14,7 +14,20 @@ and open the template in the editor.
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
         <title>View Satisfaction Feedback</title>
+<<<<<<< Updated upstream
 <script>
+=======
+        <style>
+            .MainInsideRest{
+                    height: 800px;
+            }
+            
+            .SidebarInsideRest{
+                    height: 800px;
+            }
+        </style>
+                <script>
+>>>>>>> Stashed changes
 </script>
     </head>
     <body>
@@ -67,8 +80,10 @@ and open the template in the editor.
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
                     <div>
+                        <div class="SatisfactionText">
                     <h2>Customer Satisfaction Comments</h2>  
                     <h4>Comments made by your customers who were satisfied:</h4>
+                        </div>
                     <div class="DashboardTableBox">
 
 <?php                 
@@ -78,15 +93,15 @@ $satisfiedResult = mysqli_query($conn, $satisfiedQuery) or die(mysqli_error($con
                        
 
           
-          echo "<table class='sportTable' border='1'>
-<tr class='sportTopRow'>
+          echo "<table class='DomainTable' border='1'>
+<tr class='DomainTableTopRow'>
 <th>Comment</th>
 </tr>";
 
  
 while($row = mysqli_fetch_assoc($satisfiedResult))
 {
- $TableClass = ($x%2 == 0)? 'sportFirstRows': 'sportTableSecondRows';
+ $TableClass = ($x%2 == 0)? 'DomainTableFirstRows': 'DomainTableSecondRows';
 echo "<tr class='$TableClass'>";
 echo "<td>" . $row['SatisfiedComment'] . "</td>";
 echo "</tr>";
@@ -95,8 +110,9 @@ $x++;
 echo "</table>";
 ?>
                     </div>
-                    
+                        <div class="SatisfactionText">
                     <h4>Comments made by your customers who were unsatisfied:</h4>
+                        </div>
                     <div class="DashboardTableBox">
 
 <?php                 
@@ -106,15 +122,15 @@ $unsatisfiedResult = mysqli_query($conn, $unsatisfiedQuery) or die(mysqli_error(
                        
 
           
-          echo "<table class='sportTable' border='1'>
-<tr class='sportTopRow'>
+          echo "<table class='DomainTable' border='1'>
+<tr class='DomainTableTopRow'>
 <th>Comment</th>
 </tr>";
 
  
 while($row = mysqli_fetch_assoc($unsatisfiedResult))
 {
- $TableClass = ($x%2 == 0)? 'sportFirstRows': 'sportTableSecondRows';
+ $TableClass = ($x%2 == 0)? 'DomainTableFirstRows': 'DomainTableSecondRows';
 echo "<tr class='$TableClass'>";
 echo "<td>" . $row['SatisfiedComment'] . "</td>";
 echo "</tr>";

@@ -11,11 +11,21 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+<<<<<<< Updated upstream
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>View Sport Feedback</title>
 <script>
+=======
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" type="text/css" href="/Wifi_Analyser/Style/Wifi_Analyser.css">
+
+          <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>View Sport Feedback</title>
+                <script>
+>>>>>>> Stashed changes
 </script>
     </head>
     <body>
@@ -68,8 +78,10 @@ and open the template in the editor.
                 <div class="MainInsideTop"></div>
                 <div class="MainInsideRest">
                     <div>
+                        <div class="SatisfactionText">
                     <h2>Sport Comments</h2>  
                     <h4>Comments made by your customers who chose "Sport"</h4>
+                        </div>
                     <div class="DashboardTableBox">
 
 <?php                 
@@ -100,7 +112,7 @@ echo "</table>";
                   
                
           
-<button class="back-button" onclick="goBack()"><img width="40" height="40" class="pure-img-responsive" alt="Back" src="Images/App/back.png"></button>
+<button class="back-button backButtonMargin" onclick="goBack()"><img width="40" height="40" class="pure-img-responsive" alt="Back" src="Images/App/back.png"></button>
 
 <script>
 function goBack() {
